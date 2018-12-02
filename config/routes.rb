@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  get 'app/*other', to: 'app#index'
+  get 'app', to: 'app#index'
   resources :products, only: [:show, :index]
 end
