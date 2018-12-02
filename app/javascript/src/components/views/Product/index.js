@@ -6,11 +6,12 @@ class Product extends React.Component {
   }
 
   render() {
-    const { id } = this.props;
+    const { product } = this.props;
 
     return (
       <div>
-        <span>Product ID: {id}</span>
+        <div>Title: {product.title}</div>
+        <div>Price: {product.price}</div>
       </div>
     )
   }
