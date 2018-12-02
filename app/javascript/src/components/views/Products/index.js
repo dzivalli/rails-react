@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import { ProductsAPI } from "src/constants/products"
 import ProductCard from "./ProductCard";
 import { withRouter } from "react-router-dom";
 
@@ -10,7 +9,7 @@ class Products extends Component {
   }
 
   render() {
-    const products = ProductsAPI;
+    const { products } = this.props;
     const { state } = this.props.location;
     const message = state && state.message;
 
