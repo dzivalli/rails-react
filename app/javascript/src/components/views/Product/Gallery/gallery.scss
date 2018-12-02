@@ -1,0 +1,15 @@
+#gallery {
+  img {
+    &.thumbnail {
+      width: 100px;
+    }
+
+    &.active-image {
+      height: 300px;
+    }
+
+    &.active-thumbnail {
+      border: 1px dashed black;
+    }
+  }
+}
