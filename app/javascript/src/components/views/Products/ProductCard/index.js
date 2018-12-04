@@ -28,7 +28,7 @@ class ProductCard extends Component {
            onDragStart={this.onProductCardDragStart}
            draggable>
         <Link to={productPath(product.id)}>
-          <Image src={product.images[0].url}
+          <Image src={product.imageUrl}
                  alt={product.title}
                  width={100}
                  height={60} />
