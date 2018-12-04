@@ -1,6 +1,6 @@
 import React from "react";
 
-import ProductContainer from "src/components/ProductContainer";
+import ProductContainer from "src/components/views/Product";
 import { productPath } from "src/helpers/routes";
 
 export default {

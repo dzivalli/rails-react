@@ -2,7 +2,7 @@ import React from "react";
 import request from "superagent";
 import humps from "humps";
 
-import Product from "src/components/views/Product";
+import Product from "./Product";
 
 const PRODUCTS_URL = "/products";
 
