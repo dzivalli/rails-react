@@ -8,14 +8,14 @@ class Product extends React.Component {
   }
 
   render() {
-    const { product } = this.props;
+    const { product: { title, price, images } } = this.props;
 
     return (
       <div>
-        <div>Title: {product.title}</div>
-        <div>Price: {product.price}</div>
+        <div>Title: {title}</div>
+        <div>Price: {price}</div>
         {
-          product.images && <Gallery images={product.images}/>
+          images && <Gallery images={images}/>
         }
       </div>
     )

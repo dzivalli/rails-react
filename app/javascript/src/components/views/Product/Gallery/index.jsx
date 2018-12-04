@@ -13,21 +13,12 @@ class Gallery extends React.Component {
     this.changeActiveImage = this.changeActiveImage.bind(this);
   }
 
-  removeActiveThumbnailClass() {
-    document
-      .querySelectorAll("#gallery .thumbnail")
-      .forEach((thumbnail) => {
-        thumbnail.classList.remove("active-thumbnail");
-      });
+  changeActiveImage(url) {
+    this.setState({ activeImageUrl: url });
   }
 
-  changeActiveImage(e) {
-    const element = e.target;
-    const url = element.getAttribute("src");
-
-    this.removeActiveThumbnailClass();
-    element.classList.add("active-thumbnail");
-    this.setState({ activeImageUrl: url });
+  isActiveImage(url) {
+    return url === this.state.activeImageUrl;
   }
 
   render() {
@@ -46,8 +37,8 @@ class Gallery extends React.Component {
                 src={url}
                 alt=""
                 key={id}
-                className="thumbnail"
-                onClick={this.changeActiveImage}
+                className={this.isActiveImage(url) ? "thumbnail active-thumbnail" : "thumbnail"}
+                onClick={() => this.changeActiveImage(url)}
               />
             ))
           }
