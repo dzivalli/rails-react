@@ -7,7 +7,7 @@ import CartContainer from "src/components/CartContainer"
 
 const App = () => (
   <CartContainer>
-    <Router>
+    <Router basename="/app">
       <div className="container">
         <Menu />
         <Switch>
