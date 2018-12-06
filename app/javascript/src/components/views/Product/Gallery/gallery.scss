@@ -12,4 +12,15 @@
       border: 1px dashed black;
     }
   }
+
+  .thumbnails-list {
+    display: flex;
+    align-items: center;
+
+    .arrow {
+      margin: 5px;
+      font-size: 5em;
+      cursor: pointer;
+    }
+  }
 }
