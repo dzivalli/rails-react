@@ -1,17 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-
 
 import { cartPath } from "src/helpers/routes";
-import { addProduct } from "src/actions/Cart";
-
-const actionsToProps = (dispatch) => (bindActionCreators({ addProduct }, dispatch));
-
-const stateToProps = (state) => ({
-  products: state.cart.products
-});
 
 class Checkout extends React.Component {
   constructor(props) {
@@ -43,4 +33,4 @@ class Checkout extends React.Component {
   }
 }
 
-export default connect(stateToProps, actionsToProps)(Checkout);
+export default Checkout;
