@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { cartPath, contactsPath, productsPath } from "src/helpers/routes";
-import Checkout from "src/components/Checkout";
+import Checkout from "./Checkout";
 
 class Menu extends React.Component {
   render() {

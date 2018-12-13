@@ -1,55 +1,41 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { Redirect } from "react-router-dom";
-import CartContext from "src/components/cart-context";
 import { productsPath } from "src/helpers/routes";
+
+const stateToProps = (state) => ({
+  products: state.cart.products
+});
 
 class Cart extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  onDragOver(e) {
-    e.preventDefault();
-  }
-
-  onProductDrop(e, addProductCallback) {
-    e.preventDefault();
-
-    const id = JSON.parse(e.dataTransfer.getData("text"));
-    addProductCallback(id);
-  }
-
   render() {
-    return (
-      <CartContext.Consumer>
-        {
-          ({productsInCart}) => {
-            if (productsInCart.length === 0) {
-              return (
-                <Redirect
-                  to={{
-                    pathname: productsPath(),
-                    state: { message: "Your cart is empty" }
-                  }}
-                />
-              )
-            } else {
-              return (
-                productsInCart.map((product, index) => (
-                  <div key={index}>
-                    <span className="mr-2">ID: {product.id}</span>
-                    <span>Amount: {product.amount}</span>
-                  </div>
-                ))
-              )
-            }
-          }
-        }
-      </CartContext.Consumer>
-    );
+    const { products } = this.props;
 
+    return (
+      products.length === 0
+        ? (
+          <Redirect
+            to={{
+              pathname: productsPath(),
+              state: { message: "Your cart is empty" }
+            }}
+          />
+        )
+        : (
+            products.map((product, index) => (
+              <div key={index}>
+                <span className="mr-2">ID: {product.id}</span>
+                <span>Amount: {product.amount}</span>
+              </div>
+            ))
+        )
+    )
   }
 }
 
-export default Cart;
+export default connect(stateToProps, null)(Cart);
