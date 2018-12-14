@@ -1,30 +1,29 @@
 import React from "react";
-import request from "superagent";
-import humps from "humps";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 import Products from "./Products";
 
-const PRODUCTS_URL = "/products";
+import { fetchProducts } from "src/actions/Products"
+
+const actionsToProps = (dispatch) => (bindActionCreators({ fetchProducts }, dispatch));
+
+const stateToProps = (state) => ({
+  products: state.products.entries,
+  isFetching: state.products.isFetching
+});
 
 class ProductsContainer extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      products: []
-    }
   }
 
   componentDidMount() {
-    request(PRODUCTS_URL)
-      .then(({ body }) => {
-        const products = humps.camelizeKeys(body.products);
-        this.setState({ products });
-      })
+    this.props.fetchProducts();
   }
 
   render() {
-    let { products }= this.state;
+    let { products }= this.props;
 
     return (
       <Products products={products}/>
@@ -32,4 +31,4 @@ class ProductsContainer extends React.Component {
   }
 }
 
-export default ProductsContainer;
+export default connect(stateToProps, actionsToProps)(ProductsContainer);
