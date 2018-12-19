@@ -21,12 +21,12 @@ export function fetchProducts() {
     dispatch(requestProducts());
 
     return request("/products")
-      .then(({ body }) => {
+      .then(({body}) => {
         let products = humps.camelizeKeys(body.products);
-        dispatch(receiveProducts(products))
+        dispatch(receiveProducts(products));
       })
-      .catch((error) => {
-        dispatch(errorProducts())
-      })
-  }
+      .catch(() => {
+        dispatch(errorProducts());
+      });
+  };
 }

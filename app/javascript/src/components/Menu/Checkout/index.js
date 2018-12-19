@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { addProduct } from "src/actions/Cart";
-import Checkout from "./Checkout"
+import { addProduct, getProductsFromLocalStorage } from "src/actions/Cart";
+import Checkout from "./Checkout";
 
-const actionsToProps = (dispatch) => (bindActionCreators({ addProduct }, dispatch));
+const actionsToProps = (dispatch) => (bindActionCreators({ addProduct, getProductsFromLocalStorage }, dispatch));
 
 const stateToProps = (state) => ({
   products: state.cart.products
@@ -16,12 +16,16 @@ class CheckoutContainer extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.getProductsFromLocalStorage();
+  }
+
   render() {
     let { products, addProduct } = this.props;
 
     return (
       <Checkout products={products} addProduct={addProduct}/>
-    )
+    );
   }
 }
 
