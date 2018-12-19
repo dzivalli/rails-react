@@ -4,9 +4,9 @@ import { bindActionCreators } from "redux";
 
 import Products from "./Products";
 
-import { fetchProducts } from "src/actions/Products"
+import { requestProducts } from "src/actions/Products";
 
-const actionsToProps = (dispatch) => (bindActionCreators({ fetchProducts }, dispatch));
+const actionsToProps = (dispatch) => (bindActionCreators({ requestProducts }, dispatch));
 
 const stateToProps = (state) => ({
   products: state.products.entries,
@@ -19,7 +19,7 @@ class ProductsContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchProducts();
+    this.props.requestProducts();
   }
 
   render() {
@@ -27,7 +27,7 @@ class ProductsContainer extends React.Component {
 
     return (
       <Products products={products}/>
-    )
+    );
   }
 }
 
