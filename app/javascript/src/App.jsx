@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
-import routes from "src/routes"
-import Menu from "src/components/Menu"
-import ProductImages from "src/routes/product-images"
+import routes from "src/routes";
+import Menu from "src/components/Menu";
+import ProductImages from "src/routes/product-images";
 import store from "src/store";
 
 class App extends React.Component {
