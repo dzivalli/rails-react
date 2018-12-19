@@ -1,13 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 
-import thunk from "redux-thunk";
-
 import reducers from "src/reducers";
-import storeCartToLocalStorage from "./middlewares/storeCartToLocalStorage"
+import middleware from "./middleware";
 
 const store = createStore(
   combineReducers(reducers),
-  applyMiddleware(storeCartToLocalStorage, thunk)
+  applyMiddleware(...middleware)
 );
 
 export default store;
