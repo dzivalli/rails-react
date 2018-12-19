@@ -4,4 +4,4 @@ import Cart from "./cart";
 import Contacts from "./contacts";
 import NotFound from "./not-found";
 
-export default [Products, Cart, Contacts, Product, NotFound]
+export default [Products, Cart, Contacts, Product, NotFound];
