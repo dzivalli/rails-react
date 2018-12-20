@@ -22,4 +22,4 @@ class ProductsContainer extends React.Component {
   }
 }
 
-export default connect(stateToProps, null)(ProductsContainer);
+export default connect(stateToProps)(ProductsContainer);

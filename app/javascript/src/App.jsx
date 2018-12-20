@@ -7,15 +7,20 @@ import routes from "src/routes";
 import Menu from "src/components/Menu";
 import ProductImages from "src/routes/product-images";
 import store from "src/store";
+import { getProductsFromLocalStorage } from "src/actions/Cart";
 
 history.listen((location) => {
   routes
     .filter((route) => route.prepareData)
     .filter((route) => matchPath(location.pathname, route))
-    .forEach((route) => route.prepareData(store));
+    .map((route) => route.prepareData(store));
 });
 
 class App extends React.Component {
+  componentDidMount() {
+    store.dispatch(getProductsFromLocalStorage());
+  }
+
   render() {
     return (
       <Provider store={store}>

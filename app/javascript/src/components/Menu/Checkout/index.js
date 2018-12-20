@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { addProduct, getProductsFromLocalStorage } from "src/actions/Cart";
+import { addProduct } from "src/actions/Cart";
 import Checkout from "./Checkout";
 
-const actionsToProps = (dispatch) => (bindActionCreators({ addProduct, getProductsFromLocalStorage }, dispatch));
+const actionsToProps = (dispatch) => (bindActionCreators({ addProduct }, dispatch));
 
 const stateToProps = (state) => ({
   products: state.cart.products
@@ -14,10 +14,6 @@ const stateToProps = (state) => ({
 class CheckoutContainer extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    this.props.getProductsFromLocalStorage();
   }
 
   render() {
