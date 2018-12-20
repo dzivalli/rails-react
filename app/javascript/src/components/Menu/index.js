@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { cartPath, contactsPath, productsPath } from "src/helpers/routes";
+import { contactsPath, productsPath } from "src/helpers/routes";
 import Checkout from "./Checkout";
 
 class Menu extends React.Component {
@@ -27,7 +27,7 @@ class Menu extends React.Component {
           </form>
         </div>
       </nav>
-    )
+    );
   }
 }
 

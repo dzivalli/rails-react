@@ -1,12 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 import Products from "./Products";
-
-import { fetchProducts } from "src/actions/Products"
-
-const actionsToProps = (dispatch) => (bindActionCreators({ fetchProducts }, dispatch));
 
 const stateToProps = (state) => ({
   products: state.products.entries,
@@ -18,17 +13,13 @@ class ProductsContainer extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.fetchProducts();
-  }
-
   render() {
     let { products }= this.props;
 
     return (
       <Products products={products}/>
-    )
+    );
   }
 }
 
-export default connect(stateToProps, actionsToProps)(ProductsContainer);
+export default connect(stateToProps)(ProductsContainer);

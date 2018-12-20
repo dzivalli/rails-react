@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { addProduct } from "src/actions/Cart";
-import Checkout from "./Checkout"
+import Checkout from "./Checkout";
 
 const actionsToProps = (dispatch) => (bindActionCreators({ addProduct }, dispatch));
 
@@ -21,7 +21,7 @@ class CheckoutContainer extends React.Component {
 
     return (
       <Checkout products={products} addProduct={addProduct}/>
-    )
+    );
   }
 }
 

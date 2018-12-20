@@ -4,4 +4,4 @@ import { cartPath } from "src/helpers/routes";
 export default {
   path: cartPath(),
   component: Cart
-}
+};

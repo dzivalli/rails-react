@@ -13,7 +13,7 @@ export default function(state = initialState, action) {
     case types.FETCH_PRODUCTS_ERROR:
       return Object.assign({}, state, { error: true });
     case types.FETCH_PRODUCTS_SUCCESS:
-      return Object.assign({}, state, { entries: action.entries });
+      return Object.assign({}, state, { entries: action.data.products });
     default:
       return state;
   }
