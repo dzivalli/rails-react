@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :products, only: [:show, :index] do
     resources :images, only: [:show, :index], shallow: true
   end
+  resources :dummy, only: :create
 end
