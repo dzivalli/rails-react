@@ -9,10 +9,12 @@ export default () => next => action => {
   let args = action[API_CALL];
   let newAction = Object.assign({}, action, { [API_CALL]: undefined });
   let [requestType, successType, errorType] = args.types;
+  let { payload, endpoint } = args;
 
   next(Object.assign({}, newAction, { type: requestType }));
 
-  request[args.method.toLowerCase()](args.endpoint)
+  request[args.method.toLowerCase()](endpoint)
+    .send(payload)
     .then(({ body }) => {
       let data = camelizeKeys(body);
 
