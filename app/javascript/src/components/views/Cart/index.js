@@ -1,8 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
-
 import { Redirect } from "react-router-dom";
+
+import store from "src/store";
 import { productsPath } from "src/helpers/routes";
+import OrderForm from "./OrderForm";
+import { submitOrder } from "src/actions/Cart";
 
 const stateToProps = (state) => ({
   products: state.cart.products
@@ -11,6 +14,13 @@ const stateToProps = (state) => ({
 class Cart extends React.Component {
   constructor(props) {
     super(props);
+    this.handleOrderFormSubmit = this.handleOrderFormSubmit.bind(this);
+  }
+
+  handleOrderFormSubmit(values) {
+    const { products } = this.props;
+    const payload = { contact: values, products };
+    store.dispatch(submitOrder(payload));
   }
 
   render() {
@@ -27,14 +37,22 @@ class Cart extends React.Component {
           />
         )
         : (
-            products.map((product, index) => (
-              <div key={index}>
-                <span className="mr-2">ID: {product.id}</span>
-                <span>Amount: {product.amount}</span>
-              </div>
-            ))
+          <Fragment>
+            <h3 className="mt-2">Products:</h3>
+            {
+              products.map((product, index) => (
+                <div key={index}>
+                  <span className="mr-2">ID: {product.id}</span>
+                  <span>Amount: {product.amount}</span>
+                </div>
+              ))
+            }
+            <OrderForm
+              handleSubmit={this.handleOrderFormSubmit}
+            />
+          </Fragment>
         )
-    )
+    );
   }
 }
 
