@@ -2,26 +2,14 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import store from "src/store";
 import { productsPath } from "src/helpers/routes";
 import OrderForm from "./OrderForm";
-import { submitOrder } from "src/actions/Cart";
 
 const stateToProps = (state) => ({
   products: state.cart.products
 });
 
 class Cart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleOrderFormSubmit = this.handleOrderFormSubmit.bind(this);
-  }
-
-  handleOrderFormSubmit(values) {
-    const { products } = this.props;
-    const payload = { contact: values, products };
-    store.dispatch(submitOrder(payload));
-  }
 
   render() {
     const { products } = this.props;
@@ -47,9 +35,7 @@ class Cart extends React.Component {
                 </div>
               ))
             }
-            <OrderForm
-              handleSubmit={this.handleOrderFormSubmit}
-            />
+            <OrderForm products={products} />
           </Fragment>
         )
     );

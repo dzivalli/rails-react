@@ -1,6 +1,6 @@
 import * as types from "src/constants/actionTypes/CartActionTypes";
 
-import { getCart, saveCart } from "src/helpers/cartPersistence";
+import { getCart } from "src/helpers/cartPersistence";
 
 const initialState = {
   products: []
@@ -19,9 +19,7 @@ export default function(state = initialState, action) {
     case types.SUBMIT_ORDER_REQUEST:
       return Object.assign({}, state, { isSubmitting: true });
     case types.SUBMIT_ORDER_SUCCESS:
-      products = [];
-      saveCart(products);
-      return Object.assign({}, state, { products });
+      return Object.assign({}, state, { products: [] });
     case types.SUBMIT_ORDER_ERROR:
       return Object.assign({}, state, { error: action.error });
     default:

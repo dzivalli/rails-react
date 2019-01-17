@@ -9,7 +9,7 @@ export default () => next => action => {
   let args = action[API_CALL];
   let newAction = Object.assign({}, action, { [API_CALL]: undefined });
   let [requestType, successType, errorType] = args.types;
-  let { payload, endpoint } = args;
+  let { payload, endpoint, onSuccess } = args;
 
   next(Object.assign({}, newAction, { type: requestType }));
 
@@ -19,6 +19,9 @@ export default () => next => action => {
       let data = camelizeKeys(body);
 
       next(Object.assign({}, newAction, { type: successType, data: data }));
+      if (typeof onSuccess === "function") {
+        onSuccess();
+      }
     })
     .catch((error) => {
       next(Object.assign({}, newAction, { type: errorType, error: error }));

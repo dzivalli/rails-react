@@ -1,6 +1,8 @@
 import API_CALL from "src/constants/API_CALL";
 import * as types from "src/constants/actionTypes/CartActionTypes";
 
+import { saveCart } from "src/helpers/cartPersistence";
+
 export function addProduct(product) {
   return {
     type: types.ADD_PRODUCT,
@@ -19,6 +21,7 @@ export const submitOrder = (payload) => ({
     endpoint: "/dummy",
     method: "POST",
     payload,
+    onSuccess: () => saveCart({products: []}),
     types: [
       types.SUBMIT_ORDER_REQUEST,
       types.SUBMIT_ORDER_SUCCESS,
